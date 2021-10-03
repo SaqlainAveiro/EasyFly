@@ -1,0 +1,90 @@
+﻿@model EasyFly.Models.HotelInfo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>HotelInfo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.HotelName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HotelName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HotelAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HotelAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HotelMail)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HotelMail)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BusinessCapacity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BusinessCapacity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EconomyCapacity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EconomyCapacity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HotelPhotos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HotelPhotos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EcoRent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EcoRent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BusiRent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BusiRent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContactNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContactNo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.HotelID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
