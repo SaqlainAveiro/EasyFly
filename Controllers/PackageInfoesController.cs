@@ -24,6 +24,9 @@ namespace EasyFly.Controllers
             return View(db.PackageInfoes.ToList());
         }
 
+
+
+
         // GET: PackageInfoes/Details/5
         public ActionResult Details(string id)
         {
@@ -49,6 +52,18 @@ namespace EasyFly.Controllers
         // GET: PackageInfoes/Create
         public ActionResult Create()
         {
+            var HotelListQuery = db.Database.SqlQuery<HotelInfo>("Select * FROM HotelInfo").ToList();
+
+            List<String> HotelList = new List<String>();
+
+            foreach (var x in HotelListQuery)
+            {
+                HotelList.Add(x.HotelID.ToString());
+            }
+
+            ViewBag.HotelList = HotelList;
+
+
             return View();
         }
 
@@ -59,6 +74,12 @@ namespace EasyFly.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(PackageInfo packageInfo)
         {
+            var HotelListQuery = db.Database.SqlQuery<HotelInfo>("Select * From HotelInfo Where HotelID = '"+packageInfo.HotelName+"'").ToList();
+
+            packageInfo.HotelName   = HotelListQuery[0].HotelName;
+            packageInfo.HotelImage  = HotelListQuery[0].HotelPhotos;
+            packageInfo.Destination = HotelListQuery[0].HotelAddress; 
+
             if (ModelState.IsValid)
             {
                 db.PackageInfoes.Add(packageInfo);
@@ -89,6 +110,16 @@ namespace EasyFly.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            var HotelListQuery = db.Database.SqlQuery<HotelInfo>("Select * FROM HotelInfo").ToList();
+
+            List<String> HotelList = new List<String>();
+
+            foreach (var x in HotelListQuery)
+            {
+                HotelList.Add(x.HotelName);
+            }
+
+            ViewBag.HotelList = HotelList;
             PackageInfo packageInfo = db.PackageInfoes.Find(id);
             if (packageInfo == null)
             {
@@ -104,6 +135,12 @@ namespace EasyFly.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(PackageInfo packageInfo)
         {
+            var HotelListQuery = db.Database.SqlQuery<HotelInfo>("Select * From HotelInfo Where HotelID = '" + packageInfo.HotelName + "'").ToList();
+
+            packageInfo.HotelName = HotelListQuery[0].HotelName;
+            packageInfo.HotelImage = HotelListQuery[0].HotelPhotos;
+            packageInfo.Destination = HotelListQuery[0].HotelAddress;
+
             if (ModelState.IsValid)
             {
                 db.Entry(packageInfo).State = EntityState.Modified;

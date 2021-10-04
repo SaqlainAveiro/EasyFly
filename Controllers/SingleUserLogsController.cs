@@ -24,7 +24,10 @@ namespace EasyFly.Controllers
 
         public ActionResult Chat()
         {
-            //ViewBag.d = db.Database.SqlQuery<SingleUserLog>("SELECT Name FROM User1 where Id=3;").ToList();
+            string Email = Session["User_Email"].ToString();
+
+            ViewBag.User = Email;
+
             return View();
         }
 
@@ -56,11 +59,13 @@ namespace EasyFly.Controllers
                                         && u.S_Passkey.Equals(userlogin.Passkey)).FirstOrDefault();
 
                 Session["User_Email"] = "";
+                Session["User_ID"] = "";
 
                 if (userloginquery != null)
                 {
                     Session["User_Email"] = userlogin.UserEmail;
                     Session["User_Type"] = "SingleUser";
+                    //Session["User_ID"] = (from S in db.SingleUserLogs where S.S_Email.Equals(userlogin.UserEmail) select S.S_UserID);
                     return RedirectToAction("SearchForFlight");
                 }
                 else
@@ -754,14 +759,14 @@ namespace EasyFly.Controllers
         public ActionResult Packages()
         {
             SessionOfUserID = Session["User_Email"].ToString();
-
             var res = db.Database.SqlQuery<PackageInfo>("select * from PackageInfo").ToList();
             ViewBag.packages = res;
             return View();
         }
+
+
         public ActionResult PackageDetail(string pid)
         {
-
             SessionOfUserID = Session["User_Email"].ToString();
             var res = db.Database.SqlQuery<PackageInfo>("select * from PackageInfo where PackageID = '" + pid + "'").FirstOrDefault();
             ViewBag.package = res;

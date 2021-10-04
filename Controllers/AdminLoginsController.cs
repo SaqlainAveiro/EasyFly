@@ -33,6 +33,7 @@ namespace EasyFly.Controllers
                 {
                     Session["AdminID"] = adminlogin.AdminID;
                     Session["AdminPassword"] = adminlogin.Password;
+                    Session["User_Email"] = "admin";
                     return RedirectToAction("AdminDashboard");
                 }
                 else
