@@ -18,17 +18,24 @@ namespace EasyFly.Controllers
 
         public ActionResult Output(Feedback feedback)
         {
+            string Email = Session["User_Email"].ToString();
+
+            ViewBag.d = db.Database.SqlQuery<SingleUserLog>("SELECT * FROM SingleUserLog where S_Email = '" + Email + "'").ToList();
+
 
             if (feedback.S_UserID != null)
             {
                 db.Database.ExecuteSqlCommand("Insert Into Feedback(FlightID,S_UserID,Feedback1,FlightRating) " +
-                "Values( '" + feedback.FlightID  + "' , '" + feedback.S_UserID + "' , '" + feedback.Feedback1 + "' , '" + feedback.FlightRating  + "' )");
+                "Values( '" + feedback.FlightID + "' , '" + ViewBag.d[0].S_UserID + "' , '" + feedback.Feedback1 + "' , '" + feedback.FlightRating + "' )");
             }
 
             var res = db.Database.SqlQuery<Feedback>("SELECT TOP 5 * FROM Feedback ORDER BY S_UserID DESC").ToList();
 
             return View(res);
         }
+
+
+
 
 
 

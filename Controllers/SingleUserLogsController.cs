@@ -24,10 +24,6 @@ namespace EasyFly.Controllers
 
         public ActionResult Chat()
         {
-            string Email = Session["User_Email"].ToString();
-
-            ViewBag.User = Email;
-
             return View();
         }
 
@@ -57,15 +53,21 @@ namespace EasyFly.Controllers
             {
                 var userloginquery = db.SingleUserLogs.Where(u => u.S_Email.Equals(userlogin.UserEmail)
                                         && u.S_Passkey.Equals(userlogin.Passkey)).FirstOrDefault();
-
+                
                 Session["User_Email"] = "";
                 Session["User_ID"] = "";
+                Session["User_Name"] = "";
+                Session["User_Type"] = "SingleUser";
 
                 if (userloginquery != null)
                 {
+                    var userDetails = db.Database.SqlQuery<SingleUserLog>("Select * From SingleUserLog Where S_Email = '" + userlogin.UserEmail + "'").ToList();
+
                     Session["User_Email"] = userlogin.UserEmail;
                     Session["User_Type"] = "SingleUser";
-                    //Session["User_ID"] = (from S in db.SingleUserLogs where S.S_Email.Equals(userlogin.UserEmail) select S.S_UserID);
+                    Session["User_Name"] = userDetails[0].FirstName;
+                    Session["User_ID"] = userDetails[0].S_UserID;
+
                     return RedirectToAction("SearchForFlight");
                 }
                 else
