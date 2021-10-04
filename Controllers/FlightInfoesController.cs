@@ -102,8 +102,12 @@ namespace EasyFly.Controllers
                                                "C1","C2","C3","C4","C5","D1","D2","D3","D4","D5",
                                                "E1","E2","E3","E4","E5","F1","F2","F3","F4","F5",
                                                "G1","G2","G3","G4","G5","H1","H2","H3","H4","H5"};
-            var res = db.Database.SqlQuery<FlightInfo>("SELECT * FROM FlightInfo WHERE FlightID = '" + flightInfo.FlightID + "'").ToList();
-            var mes = db.Database.SqlQuery<Feedback>("SELECT * FROM Feedback WHERE FlightID = '" + flightInfo.FlightID + "'").ToList();
+            
+            var res = db.Database.SqlQuery<FlightInfo>("Select * From FlightInfo Where FlightID = '" + flightInfo.FlightID + "'").ToList();
+            var mes = db.Database.SqlQuery<Feedback>("Select * From Feedback Where FlightID = '" + flightInfo.FlightID + "'").ToList();
+            var pas = db.Database.SqlQuery<SingleUserLog>("Select * From SingleUserLog");
+
+
 
             var kes = (from feed in db.Feedbacks join flight in db.FlightInfoes
                        on feed.FlightID equals flight.FlightID  
@@ -119,8 +123,10 @@ namespace EasyFly.Controllers
                             AircraftID = flight.AirCraftID,
                             Flighttype = flight.FlightType                            
                         }).ToList();
-            
 
+
+
+            ViewBag.PassengerDetails = pas;
             ViewBag.flightFeedbacks  = mes;
             ViewBag.flightDetails    = res;
             ViewBag.selectedFlightId = flightInfo.FlightID;

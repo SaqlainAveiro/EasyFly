@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -20,6 +21,11 @@ namespace EasyFly.Controllers
             return View(db.HotelInfoes.ToList());
         }
 
+
+
+
+
+
         // GET: HotelInfoes/Details/5
         public ActionResult Details(string id)
         {
@@ -35,6 +41,12 @@ namespace EasyFly.Controllers
             return View(hotelInfo);
         }
 
+
+
+
+
+
+
         // GET: HotelInfoes/Create
         public ActionResult Create()
         {
@@ -46,8 +58,18 @@ namespace EasyFly.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "HotelID,HotelName,HotelAddress,HotelMail,BusinessCapacity,EconomyCapacity,HotelPhotos,EcoRent,BusiRent,ContactNo")] HotelInfo hotelInfo)
+        public ActionResult Create(HotelInfo hotelInfo)
         {
+            string filename = Path.GetFileNameWithoutExtension(hotelInfo.H_PhotoFile.FileName);
+            string extension = Path.GetExtension(hotelInfo.H_PhotoFile.FileName);
+
+            filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
+            hotelInfo.HotelPhotos = "~/Photos/Hotels/" + filename;
+
+            filename = Path.Combine(Server.MapPath("~/Photos/Hotels/"), filename);
+            hotelInfo.H_PhotoFile.SaveAs(filename);
+
+
             if (ModelState.IsValid)
             {
                 db.HotelInfoes.Add(hotelInfo);
@@ -57,6 +79,14 @@ namespace EasyFly.Controllers
 
             return View(hotelInfo);
         }
+
+
+
+
+
+
+
+
 
         // GET: HotelInfoes/Edit/5
         public ActionResult Edit(string id)
@@ -78,16 +108,42 @@ namespace EasyFly.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "HotelID,HotelName,HotelAddress,HotelMail,BusinessCapacity,EconomyCapacity,HotelPhotos,EcoRent,BusiRent,ContactNo")] HotelInfo hotelInfo)
+        public ActionResult Edit(HotelInfo hotelInfo)
         {
-            if (ModelState.IsValid)
+            string filename = Path.GetFileNameWithoutExtension(hotelInfo.H_PhotoFile.FileName);
+            string extension = Path.GetExtension(hotelInfo.H_PhotoFile.FileName);
+
+            filename = filename + DateTime.Now.ToString("yymmssfff") + extension;
+            hotelInfo.HotelPhotos = "~/Photos/Hotels/" + filename;
+
+            filename = Path.Combine(Server.MapPath("~/Photos/Hotels/"), filename);
+            hotelInfo.H_PhotoFile.SaveAs(filename);
+
+
+            db.Database.ExecuteSqlCommand("UPDATE HotelInfo SET " +
+                "HotelName = '"     + hotelInfo.HotelName   + "' , HotelAddress = '"    + hotelInfo.HotelAddress        + "' , " +
+                "HotelMail = '"     + hotelInfo.HotelMail   + "' , BusinessCapacity =  "+ hotelInfo.BusinessCapacity    + "  , " +
+                "HotelPhotos = '"   + hotelInfo.HotelPhotos + "' , EconomyCapacity =   "+ hotelInfo.EconomyCapacity     + "  , " +
+                "EcoRent =  "       + hotelInfo.EcoRent     + "  , BusiRent =  "        + hotelInfo.BusiRent            + "  , " +
+                "ContactNo = '"     + hotelInfo.ContactNo   + "' WHERE HotelID = '"     + hotelInfo.HotelID + "'");
+
+            /*if (ModelState.IsValid)
             {
                 db.Entry(hotelInfo).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(hotelInfo);
+            return View(hotelInfo);*/
+
+            return RedirectToAction("Index");
         }
+
+
+
+
+
+
+
 
         // GET: HotelInfoes/Delete/5
         public ActionResult Delete(string id)

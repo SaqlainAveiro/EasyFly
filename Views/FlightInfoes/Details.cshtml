@@ -184,14 +184,21 @@
 
                 <table class="table-auto w-full text-left">
                     <thead>
-                        <tr>
-                            <th class="px-4 py-2 border-r">
-                                Passenger
-                            </th>                        
-                            <th class="px-4 py-2 border-r">
-                                Feedback
-                            </th>
-                        </tr>
+                            <tr>
+                                <th class="px-4 py-2 border-r">
+                                    Passenger ID
+                                </th>
+                                <th class="px-4 py-2 border-r">
+                                    Passenger Name
+                                </th>
+                                <th class="px-4 py-2 border-r">
+                                    Feedback
+                                </th>
+                                <th class="px-4 py-2 border-r">
+                                    Flight Rating
+                                </th>
+
+                            </tr>
                     </thead>
 
                     <tbody class="text-gray-600">
@@ -202,9 +209,25 @@
                                 <td class="px-4 py-2">
                                     @item1.S_UserID
                                 </td>
+
+                                @foreach (var item2 in ViewBag.PassengerDetails)
+                                {
+                                    if(item2.S_UserID == item1.S_UserID)
+                                    {
+                                        <td class="px-4 py-2">
+                                            @item2.FirstName @item2.LastName
+                                        </td>
+                                        break;
+                                    }
+                                }
+
                                 <td class="px-4 py-2">
                                     @item1.Feedback1
-                                </td>   
+                                </td> 
+                                
+                                <td class="px-4 py-2">
+                                    @item1.FlightRating
+                                </td>
 
                             </tr>
                         }

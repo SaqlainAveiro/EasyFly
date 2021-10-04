@@ -123,27 +123,16 @@
                 @foreach (var item in Model)
                 {
                     <tr>
+                        <td class="border border-l-0 px-4 py-2"><img src="@Url.Content(item.S_Photos)" width="50" height="50" /></td>
+                        <td class="border border-l-0 px-4 py-2">@Html.DisplayFor(modelItem => item.S_UserID)</td>
+                        <td class="border border-l-0 px-4 py-2">@Html.DisplayFor(modelItem => item.S_Email)</td>
+                        <td class="border border-l-0 px-4 py-2">@Html.DisplayFor(modelItem => item.FirstName)</td>
+                        <td class="border border-l-0 px-4 py-2">@Html.DisplayFor(modelItem => item.LastName)</td>
+                        <td class="border border-l-0 px-4 py-2">@Html.DisplayFor(modelItem => item.Gender)</td>
                         <td class="border border-l-0 px-4 py-2">
-                            <!--Html.DisplayFor(modelItem => item.S_Photos)-->
-                            <img src="@Url.Content(item.S_Photos)" width="50" height="50" />
-                        </td>
-                        <td class="border border-l-0 px-4 py-2">
-                            @Html.DisplayFor(modelItem => item.S_UserID)
-                        </td>
-                        <td class="border border-l-0 px-4 py-2">
-                            @Html.DisplayFor(modelItem => item.S_Email)
-                        </td>
-                        <td class="border border-l-0 px-4 py-2">
-                            @Html.DisplayFor(modelItem => item.FirstName)
-                        </td>
-                        <td class="border border-l-0 px-4 py-2">
-                            @Html.DisplayFor(modelItem => item.LastName)
-                        </td>
-                        <td class="border border-l-0 px-4 py-2">
-                            @Html.DisplayFor(modelItem => item.Gender)
-                        </td>
-                        <td class="border border-l-0 px-4 py-2">
-                            @Html.ActionLink("Details", "Details", new { id = item.S_UserID })
+                            @Html.ActionLink("Details", "Details", new { id = item.S_UserID })|
+                            @Html.ActionLink("Edit", "Edit", new { id = item.S_UserID }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.S_UserID })
                         </td>
                     </tr>
                 }

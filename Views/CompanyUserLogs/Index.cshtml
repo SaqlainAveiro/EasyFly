@@ -160,7 +160,9 @@
                             @Html.DisplayFor(modelItem => item.C_CountryName)
                         </td>
                         <td class="border border-l-0 px-4 py-2">
-                            @Html.ActionLink("Details", "Details", new { id = item.C_UserID })
+                            @Html.ActionLink("Details", "Details", new { id = item.C_UserID }) |
+                            @Html.ActionLink("Edit", "Edit", new { id = item.C_UserID }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.C_UserID }) 
                         </td>
                     </tr>
                 }

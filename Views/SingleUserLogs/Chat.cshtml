@@ -1,7 +1,5 @@
-﻿@{ /*foreach (var f in ViewBag.d)
-     {
-         Session["name"] = f.Name;
-     }*/
+﻿@{ 
+    var id = Session["User_Email"].ToString();
 }
 
 <html>
@@ -19,7 +17,6 @@
     <div class="chat-panel panel panel-default" style="width:70%">
         <div class="panel-heading">
             Chat With Us
-            <i class="fa fa-paper-plane fa-fw"></i>
         </div>
 
         <div class="panel-body" id="chat" style="height:250px;">
@@ -87,10 +84,10 @@
                 };
 
 
-                //var a = 'Session["name"]';
-                //var a = "me";
-                //$('#displayname').val(a);
-                $('#displayname').val(prompt('Enter your name:', ''));
+                var a = 'admin';
+
+                $('#displayname').val(a);
+                //$('#displayname').val(prompt('Enter your name:', ''));
                 $('#message').focus();
                 $.connection.hub.start().done(function () {
                     $('#sendmessage').click(function () {
