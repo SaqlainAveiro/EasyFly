@@ -41,15 +41,18 @@
                 </div>
 
                 <div class="col-lg-4 col-md-5 col-sm-4 offset-md-1 offset-sm-1 col-12 mt-4">
-                    <form action="output" method="post" id="algin-form">
+                    <form action="Output" method="post" id="algin-form">
                         <div class="form-group">
-                            <h4>Leave a comment</h4>
+                            <h4>Leave a feedback</h4>
+
                             <label for="message">Message</label> <textarea name="Feedback1" id="" msg cols="30" rows="5" class="form-control" style="background-color: white;"> </textarea>
+                            <label for="rating">Flight Rating</label> <textarea name="FlightRating" id="" msg cols="30" rows="1" class="form-control" style="background-color: white;"> </textarea>
                         </div>
 
-                        <div class="form-group"> <label for="name">User ID</label> <input type="text" name="S_UserID" id="fullname" class="form-control"> </div>
+                        <div class="form-group">            
+                            <input type="submit" id="post" class="btn">
+                        </div>
 
-                        <div class="form-group"> <input type="submit" id="post" class="btn"></div>
                     </form>
                 </div>
 

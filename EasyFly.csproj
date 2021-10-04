@@ -289,6 +289,8 @@
     <Content Include="Content\Comments.css" />
     <Content Include="Content\table.css" />
     <Content Include="Content\userinfo.css" />
+    <Content Include="Photos\General\easyfly.jpg" />
+    <Content Include="Photos\General\easyfly1.jpg" />
     <Content Include="Photos\Logo\R.png" />
     <Content Include="Photos\Logo\R1.png" />
     <Content Include="Content\EasyFlyBootstrap.css" />
@@ -433,6 +435,7 @@
     <Content Include="Views\PackageInfoes\Details.cshtml" />
     <Content Include="Views\PackageInfoes\Edit.cshtml" />
     <Content Include="Views\PackageInfoes\Index.cshtml" />
+    <Content Include="Views\AdminLogins\Chat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

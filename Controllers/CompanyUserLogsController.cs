@@ -534,9 +534,11 @@ namespace EasyFly.Controllers
             string curBookedSeats = (string)res[0].BookedSeats + ViewBag.bookedSeats;
 
             int noOfRowInserted = db.Database.ExecuteSqlCommand(
+
                 "INSERT INTO CargoFlight( FlightID,C_UserID,ProductType,ProductDimension,ProductWeight,ProductUnit,TotalCargoFare) " +
                 "VALUES('" + TempData["flightId"] + "','" + userId + "', 'Solid' , '5' ,'" + ViewBag.noOfSeats + "','" + ViewBag.bookedSeats + "' , " + ViewBag.totalFlightFare + ")");
 
+            
             int noOfRowUpdated = db.Database.ExecuteSqlCommand(
                 "UPDATE FlightInfo SET AvailableSeats = " + curNoOfSeats + ", BookedSeats = '" + curBookedSeats + "'  WHERE FlightID = '" + TempData["flightId"] + "'");
 

@@ -243,7 +243,6 @@ C:\Users\Saqlain\source\repos\EasyFly2\bin\System.Web.WebPages.xml
 C:\Users\Saqlain\source\repos\EasyFly2\bin\System.Web.WebPages.Deployment.xml
 C:\Users\Saqlain\source\repos\EasyFly2\bin\System.Web.WebPages.Razor.xml
 C:\Users\Saqlain\source\repos\EasyFly2\bin\Antlr3.Runtime.pdb
-C:\Users\Saqlain\source\repos\EasyFly2\obj\Debug\EasyFly.csproj.AssemblyReference.cache
 C:\Users\Saqlain\source\repos\EasyFly2\obj\Debug\EasyFly.csproj.CoreCompileInputs.cache
 C:\Users\Saqlain\source\repos\EasyFly2\obj\Debug\EasyFly.csproj.CopyComplete
 C:\Users\Saqlain\source\repos\EasyFly2\obj\Debug\EasyFly.dll

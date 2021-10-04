@@ -15,6 +15,15 @@ namespace EasyFly.Controllers
         string adminid = "", adminpassword = "";
         UserType abc = new UserType();
 
+
+        public ActionResult Chat()
+        {
+            return View();
+        }
+
+
+
+
         // GET: AdminLogins
         [HttpGet]
         public ActionResult AdminLogin()
@@ -33,7 +42,7 @@ namespace EasyFly.Controllers
                 {
                     Session["AdminID"] = adminlogin.AdminID;
                     Session["AdminPassword"] = adminlogin.Password;
-                    Session["User_Email"] = "admin";
+                    Session["User_Name"] = "admin";
                     return RedirectToAction("AdminDashboard");
                 }
                 else

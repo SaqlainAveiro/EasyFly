@@ -1,12 +1,13 @@
 ﻿
-@{ 
+@{
     ViewBag.Title = "Chat";
-
+    Layout = "~/Views/Shared/_AdminDashboardLayout.cshtml";
 }
 
+
 <html>
-<head>    
-    <link href="~/Content/Chat.css" rel="stylesheet" />
+<head>
+    
     <style>
         div.panel-body {
             overflow: scroll;
@@ -17,19 +18,17 @@
 <body>
 
     <div class="chat-panel panel panel-default" style="width:100%">
-        <div class="panel-heading">
-            Customer Support
-        </div>
+        <div class="panel-heading">Customer Support</div>
 
         <div class="panel-body" id="chat" style="height:350px;">
             <input type="hidden" id="displayname" />
             <p id="discussion"></p>
         </div>
-        <br />
+
         <div class="panel-footer">
-            <div class="input-group"  style="width:auto">
+            <div class="input-group" style="width:auto">
                 <input id="message" type="text" name="message" class="form-control input-sm" placeholder="Type your message here..." />
-                <br />
+
                 <span class="input-group-btn">
                     <input type="button" class="btn btn-warning btn-sm" id="sendmessage" value="Send">
                 </span>
@@ -109,3 +108,4 @@
 </body>
 
 </html>
+
